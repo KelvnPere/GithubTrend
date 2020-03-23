@@ -23,7 +23,7 @@ class RepositoryAdapter(private val repositories: List<Repository>) :
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val repository = repositories[position]
         holder.repoName.text = repository.getName()
-        holder.repoDescribtion.text = repository.getDescription()
+        holder.repoAuthorName.text = repository.getAuthorName()
         holder.repoStar.text = repository.getStars().toString()
     }
 
@@ -33,13 +33,13 @@ class RepositoryAdapter(private val repositories: List<Repository>) :
 
     inner class CustomViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var repoName: TextView
-        var repoDescribtion: TextView
+        var repoAuthorName: TextView
         var repoStar: TextView
 
 
         init {
             repoName = view.findViewById(R.id.repositoryName)
-            repoDescribtion = view.findViewById(R.id.repoDescription)
+            repoAuthorName = view.findViewById(R.id.repoAuthorName)
             repoStar = view.findViewById(R.id.repoStar)
         }
     }

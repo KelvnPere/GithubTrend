@@ -19,7 +19,7 @@
         android:layout_marginTop="16dp"
         android:text="Android"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/repoDescription"
+        app:layout_constraintBottom_toTopOf="@+id/repoAuthorName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,13 +27,13 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/repoDescription"
+        android:id="@+id/repoAuthorName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:text="Description"
+        android:text="John Doe"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -55,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repoDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/repoAuthorName" />
 
     <ImageView
         android:id="@+id/imageView"

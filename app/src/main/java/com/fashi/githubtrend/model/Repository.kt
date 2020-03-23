@@ -24,17 +24,17 @@ class Repository {
     @Expose
     private var url: String? = null
 
-    fun getDescription(): String? {
-        return description
+    fun getAuthorName(): String? {
+        return authorName
     }
 
-    fun setDescription(description: String) {
-        this.description = description
+    fun setAuthorName(authorName: String) {
+        this.authorName = authorName
     }
 
-    @SerializedName("description")
+    @SerializedName("full_name")
     @Expose
-    private var description: String? = null
+    private var authorName: String? = null
     @SerializedName("languages_url")
     @Expose
     private var language: String? = null
