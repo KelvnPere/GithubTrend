@@ -19,4 +19,6 @@ class RetrofitClient {
     fun getApiService(): Api {
         return getRetrofitInstance().create(Api::class.java)
     }
+
+
 }

@@ -47,7 +47,7 @@ class Repository {
         this.stars = stars
     }
 
-    @SerializedName("stargazers_count")
+    @SerializedName("watchers_count")
     @Expose
     private var stars: Int? = null
 
