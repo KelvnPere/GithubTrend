@@ -6,12 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import com.fashi.githubtrend.R
 import com.fashi.githubtrend.model.Repository
 
 open class RepositoryAdapter(
-    private val repositories: List<Repository>
+    private val context: Context,
+    private val repositories: ArrayList<Repository>,
+    val listener: (Repository) -> Unit
+
 //     val listener : (Repository) ->Unit
 ) :
     RecyclerView.Adapter<RepositoryAdapter.CustomViewHolder>(){
@@ -29,6 +31,8 @@ open class RepositoryAdapter(
         holder.repoName.text = repository.getName()
         holder.repoAuthorName.text = repository.getAuthorName()
         holder.repoStar.text = repository.getStars().toString()
+        holder.bindView(repositories[position],listener)
+
     }
 
     override fun getItemCount(): Int {
@@ -40,14 +44,17 @@ open class RepositoryAdapter(
         var repoAuthorName: TextView
         var repoStar: TextView
 
-//        fun bind(repository: Repository, listener: (Repository) -> Unit){
-//            itemView.setOnClickListener { listener(repository) }
-//        }
+        fun bindView(repository: Repository, listener: (Repository) -> Unit){
+            itemView.setOnClickListener {
+                listener(repository)
+            }
+        }
 
         init {
-            repoName = view.findViewById(R.id.repositoryName)
-            repoAuthorName = view.findViewById(R.id.repoAuthorName)
-            repoStar = view.findViewById(R.id.repoStar)
+            repoName = view.findViewById(R.id.repoName)
+            repoAuthorName = view.findViewById(R.id.repoAuthName)
+            repoStar = view.findViewById(R.id.repStar)
+
         }
 
     }
