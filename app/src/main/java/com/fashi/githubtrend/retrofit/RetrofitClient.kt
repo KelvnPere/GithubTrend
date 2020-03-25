@@ -2,6 +2,7 @@ package com.fashi.githubtrend.retrofit
 
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.Retrofit
+import java.lang.annotation.ElementType
 
 class RetrofitClient {
 
@@ -20,5 +21,9 @@ class RetrofitClient {
         return getRetrofitInstance().create(Api::class.java)
     }
 
+//    fun <T> getApiService(serviceType: Class<T>): Api {
+//        return getRetrofitInstance().create(Api::class.java)
+//    }
+//
 
 }

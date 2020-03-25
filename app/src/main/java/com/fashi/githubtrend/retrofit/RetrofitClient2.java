@@ -18,5 +18,4 @@ public class RetrofitClient2 {
         return getRetrofitInstance().create(Api.class);
     }
 
-
 }
