@@ -5,17 +5,13 @@ import android.os.Bundle
 import com.fashi.githubtrend.adapter.RepositoryAdapter
 import androidx.recyclerview.widget.RecyclerView
 import android.app.ProgressDialog
-import android.content.Intent
-import android.nfc.Tag
+import android.view.View
 import android.widget.Toast
 import androidx.core.os.bundleOf
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fashi.githubtrend.model.Repository
 import com.fashi.githubtrend.model.RepositoryList
-import com.fashi.githubtrend.retrofit.RetrofitClient
 import com.fashi.githubtrend.retrofit.RetrofitClient2
-import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,11 +24,6 @@ class MainActivity : AppCompatActivity() {
         val INTENT = "OBJECT"
 
     }
-
-    val bundle = bundleOf(
-        "KEY_PRICE" to 50.0,
-        "KEY_IS_FROZEN" to false
-    )
 
     private var repositorieList: ArrayList<Repository>? = null
     private var pDialog: ProgressDialog? = null
@@ -71,17 +62,27 @@ class MainActivity : AppCompatActivity() {
                     recyclerView!!.setHasFixedSize(true)
                     val eLayoutManager = LinearLayoutManager(applicationContext)
                       recyclerView!!.layoutManager = eLayoutManager
-                    recyclerView!!.adapter =
-                        repositorieList?.let {
-                            RepositoryAdapter(this@MainActivity, it){
-                                val intent = Intent(this@MainActivity, DetailActivity::class.java)
-                                startActivity(intent)
-                               //title = "CHANGED"
-                            }
-                        }
-//                    repositoryAdapter = RepositoryAdapter(this@MainActivity,)
-//                    recyclerView!!.itemAnimator = DefaultItemAnimator()
-//                    recyclerView!!.adapter = repositoryAdapter
+                    recyclerView!!.adapter = repositoryAdapter
+//                    recyclerView!!.addOnItemTouchListener(
+//                        RecyclerItemClickListener(this,
+//                            recyclerView!!, object : RecyclerItemClickListener.ClickListener {
+//                                override fun onClick(view: View, position: Int) {
+//                                    //Values are passing to activity & to fragment as well
+//                                    Toast.makeText(
+//                                        this@MainActivity,
+//                                        "Single Click on position        :$position",
+//                                        Toast.LENGTH_SHORT
+//                                    ).show()
+//                                }
+//
+//                                override fun onLongClick(view: View, position: Int) {
+//                                    Toast.makeText(
+//                                        this@MainActivity, "Long press on position :$position",
+//                                        Toast.LENGTH_LONG
+//                                    ).show()
+//                                }
+//                            })
+//                    )
                 }
             }
 

@@ -11,11 +11,8 @@ import com.fashi.githubtrend.model.Repository
 
 open class RepositoryAdapter(
     private val context: Context,
-    private val repositories: ArrayList<Repository>,
-    val listener: (Repository) -> Unit
-
-//     val listener : (Repository) ->Unit
-) :
+    private val repositories: ArrayList<Repository>
+    ) :
     RecyclerView.Adapter<RepositoryAdapter.CustomViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
@@ -31,8 +28,6 @@ open class RepositoryAdapter(
         holder.repoName.text = repository.getName()
         holder.repoAuthorName.text = repository.getAuthorName()
         holder.repoStar.text = repository.getStars().toString()
-        holder.bindView(repositories[position],listener)
-
     }
 
     override fun getItemCount(): Int {
@@ -43,12 +38,6 @@ open class RepositoryAdapter(
         var repoName: TextView
         var repoAuthorName: TextView
         var repoStar: TextView
-
-        fun bindView(repository: Repository, listener: (Repository) -> Unit){
-            itemView.setOnClickListener {
-                listener(repository)
-            }
-        }
 
         init {
             repoName = view.findViewById(R.id.repoName)
