@@ -1,79 +1,49 @@
 package com.fashi.githubtrend.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-class Repository {
 
+data class Repository(
     @SerializedName("id")
-    @Expose
-    private var id: Int? = null
+    val id: String,
     @SerializedName("name")
-    @Expose
-    private var name: String? = null
-
-    fun getUrl(): String? {
-        return url
-    }
-
-
-
-    fun setUrl(url: String) {
-        this.url = url
-    }
-
-    @SerializedName("url")
-    @Expose
-    private var url: String? = null
-
-    fun getAuthorName(): String? {
-        return authorName
-    }
-
-    fun setAuthorName(authorName: String) {
-        this.authorName = authorName
-    }
-
-    @SerializedName("full_name")
-    @Expose
-    private var authorName: String? = null
-    @SerializedName("languages_url")
-    @Expose
-    private var language: String? = null
-
-    fun getStars(): Int? {
-        return stars
-    }
-
-    fun setStars(stars: Int?) {
-        this.stars = stars
-    }
-
+    val name: String,
     @SerializedName("watchers_count")
-    @Expose
-    private var stars: Int? = null
-
-    fun getId(): Int? {
-        return id
+    val stars: Int,
+    @SerializedName("full_name")
+    var authorName:String
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readInt(),
+        parcel.readString()!!
+    ) {
     }
 
-    fun setId(id: Int?) {
-        this.id = id
+    override fun writeToParcel(p0: Parcel?, p1: Int) {
+        p0!!.writeString(id)
+        p0!!.writeString(name)
+        p0!!.writeInt(stars)
+        p0.writeString(authorName)
+
     }
 
-    fun getName(): String? {
-        return name
+    override fun describeContents(): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    fun setName(name: String) {
-        this.name = name
-    }
+    companion object CREATOR : Parcelable.Creator<Repository> {
+        override fun createFromParcel(parcel: Parcel): Repository {
+            return Repository(parcel)
+        }
 
-    fun getLanguage(): String? {
-        return language
-    }
-
-    fun setLanguage(language: String) {
-        this.language = language
+        override fun newArray(size: Int): Array<Repository?> {
+            return arrayOfNulls(size)
+        }
     }
 }

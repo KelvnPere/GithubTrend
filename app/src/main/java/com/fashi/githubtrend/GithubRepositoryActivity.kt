@@ -2,12 +2,10 @@ package com.fashi.githubtrend
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.fashi.githubtrend.adapter.RepositoryAdapter
+import com.fashi.githubtrend.adapter.ReposAdapter
 import androidx.recyclerview.widget.RecyclerView
 import android.app.ProgressDialog
-import android.view.View
-import android.widget.Toast
-import androidx.core.os.bundleOf
+import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fashi.githubtrend.model.Repository
 import com.fashi.githubtrend.model.RepositoryList
@@ -18,7 +16,9 @@ import retrofit2.Response
 import java.util.ArrayList
 
 
-class MainActivity : AppCompatActivity() {
+class GithubRepositoryActivity : AppCompatActivity(), ReposAdapter.onNoteListener {
+
+    // Pass the selected item to the activity
 
     companion object {
         val INTENT = "OBJECT"
@@ -28,13 +28,15 @@ class MainActivity : AppCompatActivity() {
     private var repositorieList: ArrayList<Repository>? = null
     private var pDialog: ProgressDialog? = null
     private var recyclerView: RecyclerView? = null
-    private var repositoryAdapter: RepositoryAdapter? = null
+    private var repositoryAdapter: ReposAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        pDialog = ProgressDialog(this@MainActivity)
+
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        pDialog = ProgressDialog(this@GithubRepositoryActivity)
         pDialog!!.setMessage("Data is loading.. Please be patient...")
         pDialog!!.isIndeterminate = false
         pDialog!!.setCancelable(false)
@@ -61,28 +63,9 @@ class MainActivity : AppCompatActivity() {
                     recyclerView = findViewById<RecyclerView>(R.id.recyclerView1)
                     recyclerView!!.setHasFixedSize(true)
                     val eLayoutManager = LinearLayoutManager(applicationContext)
-                      recyclerView!!.layoutManager = eLayoutManager
+                    recyclerView!!.layoutManager = eLayoutManager
+                    repositoryAdapter = repositorieList?.let { ReposAdapter(it, this@GithubRepositoryActivity) }
                     recyclerView!!.adapter = repositoryAdapter
-//                    recyclerView!!.addOnItemTouchListener(
-//                        RecyclerItemClickListener(this,
-//                            recyclerView!!, object : RecyclerItemClickListener.ClickListener {
-//                                override fun onClick(view: View, position: Int) {
-//                                    //Values are passing to activity & to fragment as well
-//                                    Toast.makeText(
-//                                        this@MainActivity,
-//                                        "Single Click on position        :$position",
-//                                        Toast.LENGTH_SHORT
-//                                    ).show()
-//                                }
-//
-//                                override fun onLongClick(view: View, position: Int) {
-//                                    Toast.makeText(
-//                                        this@MainActivity, "Long press on position :$position",
-//                                        Toast.LENGTH_LONG
-//                                    ).show()
-//                                }
-//                            })
-//                    )
                 }
             }
 
@@ -90,7 +73,18 @@ class MainActivity : AppCompatActivity() {
                 pDialog!!.dismiss()
             }
         })
+
     }
 
-}
+    override fun onNoteClick(position: Int) {
+        //Toast.makeText(this, "Position$position", Toast.LENGTH_SHORT).show()
+
+        val intent = Intent(this, DetailActivity::class.java)
+         intent.putExtra(INTENT, repositorieList!![position])
+        startActivity(intent)
+    }
+
+
+    }
+
 

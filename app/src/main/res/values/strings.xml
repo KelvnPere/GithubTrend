@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">GithubTrend</string>
+    <string name="app_name_repository">Repositories</string>
+    <string name="app_name_home">Home</string>
+    <string name="app_name_details">Details</string>
+    <string name="aboutDescription">This project was built as an Android Assesment test for SoftComs Android Developer role. It was build to fetch some Github API that relates to Kotlin Project.
+
+    </string>
 </resources>

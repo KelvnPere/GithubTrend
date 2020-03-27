@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Main2Activity">
+    tools:context=".GithubRepositoryActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id = "@+id/recyclerView1"
@@ -13,5 +13,6 @@
         tools:listitem="@layout/row_item"
         tools:layout_editor_absoluteX="25dp"
         tools:layout_editor_absoluteY="100dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
